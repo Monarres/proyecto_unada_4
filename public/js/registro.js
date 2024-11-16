@@ -1,4 +1,4 @@
-// Función para mostrar un mensaje de error con SweetAlert
+
 const mensaje_error = (msj) => {
     swal({
         title: "Error!",
@@ -8,7 +8,7 @@ const mensaje_error = (msj) => {
     });
 }
 
-// Función para mostrar un mensaje de éxito con SweetAlert
+
 const mensaje_exito = (msj) => {
     swal({
         title: "Correcto!",
@@ -18,7 +18,7 @@ const mensaje_exito = (msj) => {
     });
 }
 
-// Función para validar que los campos no estén vacíos
+
 const validar_campos = () => {
     if ($("#nombre").val().trim() === "" || 
         $("#apellido").val().trim() === "" || 
@@ -30,10 +30,10 @@ const validar_campos = () => {
     return true;
 }
 
-// Función para iniciar el registro
+
 const iniciar_registro = () => {
-    // Validar los campos antes de proceder
-    if (!validar_campos()) return; // Detener si los campos están vacíos
+    
+    if (!validar_campos()) return; 
 
     let data = new FormData();
     data.append("nombre", $("#nombre").val());
@@ -49,17 +49,17 @@ const iniciar_registro = () => {
     .then(respuesta => respuesta.json())
     .then(respuesta => {
         if (respuesta[0] == 1) {
-            mensaje_exito(respuesta[1]); // Mostrar mensaje de éxito
+            mensaje_exito(respuesta[1]); 
             setTimeout(() => {
                 window.location = "login";
-            }, 2000); // Redirigir después de un breve retraso
+            }, 2000); 
         } else {
-            mensaje_error(respuesta[1]); // Mostrar mensaje de error
+            mensaje_error(respuesta[1]); 
         }
     });
 }
 
-// Evento de clic en el botón de registro
+
 $("#btn_registro").on('click', () => {
     iniciar_registro();
 });
